@@ -14,5 +14,9 @@ namespace GildedRoseTests
             app.UpdateQuality();
             Assert.Equal("fixme", Items[0].Name);
         }
+
+        //add test coverage for existing functionality
+        // refactor if statements etc
+        // add new test for desired new function
     }
 }
