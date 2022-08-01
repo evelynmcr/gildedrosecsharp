@@ -196,5 +196,16 @@ namespace csharp
             rose.UpdateQuality();
             Assert.That(Items[0].Quality, Is.EqualTo(qual + 1) );
         }
+
+        [Test, Combinatorial]
+        public void Conjured_items_decrease_in_quality_by_4_when_quality_greater_than_three_and_sellin_greater_than_one(
+            [Values(4, 6, 100)] int qual, [Values(2, 10, 50)] int sellIn)
+        {
+            // this test fails but for wrong reasons? "expected 96 but was 99", but we think the actual value should be 98 - debug            
+            var Items = new List<Item> { new Item { Name = "Conjured", Quality = qual, SellIn = sellIn} };
+            var rose = new GildedRose(Items);
+            rose.UpdateQuality();
+            Assert.That(Items[0].Quality, Is.EqualTo(qual - 4));
+        }
     }
 }

@@ -29,21 +29,12 @@ namespace csharp
                 {
                     if (Items[i].Quality < 50) ChangeQuality(i, 1);
 
-                    // if (Items[i].Quality < 50)
-                    // {
-                    //     if (Items[i].SellIn > 6 && Items[i].SellIn < 11) ChangeQuality(i, 1);
-                    //     else if (Items[i].SellIn < 6) ChangeQuality(i, 2);
-                    // }
-                    
-                    if (Items[i].Quality < 50 && Items[i].SellIn < 11)
+                    if (Items[i].Quality < 50)
                     {
-                        //if sellin 6 - 10 add 1 to qual
-                        // if 5 or less, add 2 to qual
-                        ChangeQuality(i, 1);
-                    
-                        if (Items[i].SellIn < 6) ChangeQuality(i, 1);
+                        if (Items[i].SellIn > 5 && Items[i].SellIn < 11) ChangeQuality(i, 1);
+                        else if (Items[i].SellIn < 6) ChangeQuality(i, 2);
                     }
-                    
+
                     ReduceSellInByOne(i);
                 
                     if (Items[i].SellIn < 0) Items[i].Quality = 0;
@@ -60,9 +51,9 @@ namespace csharp
             }
         }
 
-        private int ReduceSellInByOne(int i)
+        private void ReduceSellInByOne(int i)
         {
-            return Items[i].SellIn -= 1;
+            Items[i].SellIn -= 1;
         }
 
         private void ChangeQuality(int i, int numberToChange)
